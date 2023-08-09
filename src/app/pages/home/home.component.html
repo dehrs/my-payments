@@ -6,10 +6,31 @@
     </div>
   </header>
 
-  <section>
-    <article class="wrapper">
-      <div class="inputFormBase">
-        <input type="text" placeholder="Pesquise por um nome">
+  <section class="sectionHome">
+    <article class="inputFormBase">
+      <input type="text" placeholder="Pesquise por um nome" />
+    </article>
+
+    <article class="containerHome">
+      <div class="button">
+        <button>filtro</button>
+        <button>add</button>
+      </div>
+      <div style="margin-top: 30px">
+        <table class="contentTable">
+          <tbody>
+            <tr>
+              <td width="50%">Débora Rodrigues</td>
+              <td>
+                <span>22</span>
+              </td>
+              <td>{{ 'Wed Aug 09 2023 14:29:13 GMT-0300' | date:"dd/MM/yyyy"}}</td>
+              <td>{{100 | currency:'BRL'}}</td>
+              <td>pago?</td>
+              <td>edit | remove</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </article>
   </section>
