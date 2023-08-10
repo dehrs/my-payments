@@ -54,4 +54,9 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+
+  onDelete(payment: NewPayment): void {
+    const paymentAux = [...this.payments];
+    this.payments = paymentAux.filter(pay => pay.id !== payment.id);
+  }
 }
