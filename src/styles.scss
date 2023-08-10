@@ -26,9 +26,7 @@ html {
 
 body {
   background: var(--gray-600);
-  color: var(--gray-300);
-  -webkit-font-smoothing: antialiesed;
-}
+  color: var(--gray-300); }
 
 body, input, textarea, button {
   font-family: 'Inter', sans-serif;
@@ -41,8 +39,45 @@ body, input, textarea, button {
   box-shadow: 0 0 0 2px var(--purple-dark);
 }
 
+.inputFormBase{
+  display: flex;
+
+  label {
+    font-weight: bold;
+    color:var(--gray-200);
+    font-size: 0.9rem;
+  }
+
+  input {
+    background: var(--gray-500);
+    color: var(--gray-300);
+    border: solid var(--gray-700) 0.0625rem;
+    height: 3rem;
+    border-radius: 8px;
+  }
+}
+
+button {
+  color: var(--gray-100);
+  background-color: var(--blue-dark);
+  border: 0;
+
+  &:disabled {
+    background: var(--gray-300);
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled):hover {
+    opacity: 0.8;
+  }
+}
+
 @media (max-width: 768px) {
   html {
     font-size: 87.5%;
   }
 }
+
+
+
+

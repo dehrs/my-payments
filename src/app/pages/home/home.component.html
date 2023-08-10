@@ -1,8 +1,10 @@
 <main>
   <header class="header">
     <div class="content-header">
-      <span>My payments</span>
-      <span>Nome user</span>
+      <span>My payments </span>
+      <span>
+        {{ name }}
+      </span>
     </div>
   </header>
 
@@ -13,21 +15,52 @@
 
     <article class="containerHome">
       <div class="button">
-        <button>filtro</button>
-        <button>add</button>
+        <button
+          mat-mini-fab
+          matTooltip="Filtro"
+          aria-label="Example mini fab with a heart icon">
+          <mat-icon>filter_alt</mat-icon>
+        </button>
+        <button
+          mat-mini-fab
+          matTooltip="Adicionar pagamento"
+          aria-label="Example mini fab with a heart icon"
+          (click)="openAddRegisterPayment()">
+          <mat-icon>add</mat-icon>
+        </button>
       </div>
+
       <div style="margin-top: 30px">
+        <div
+          *ngIf="!payments.length"
+          style="display: flex; justify-content: center">
+          Não há pagamentos cadastrados
+        </div>
         <table class="contentTable">
-          <tbody>
+          <tbody *ngFor="let item of payments">
             <tr>
-              <td width="50%">Débora Rodrigues</td>
+              <td width="50%">{{ item.username }}</td>
               <td>
-                <span>22</span>
+                <span>{{ item.title }}</span>
               </td>
-              <td>{{ 'Wed Aug 09 2023 14:29:13 GMT-0300' | date:"dd/MM/yyyy"}}</td>
-              <td>{{100 | currency:'BRL'}}</td>
+              <td>{{ item.date | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ item.valuePayment | currency: 'BRL' }}</td>
               <td>pago?</td>
-              <td>edit | remove</td>
+              <td style="display: flex; gap: 5px">
+                <button
+                  mat-mini-fab
+                  matTooltip="editar"
+                  aria-label="Example mini fab with a heart icon"
+                  (click)="openEditRegisterPayment(item)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button
+                  mat-mini-fab
+                  matTooltip="Adicionar pagamento"
+                  aria-label="Example mini fab with a heart icon">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>

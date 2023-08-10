@@ -1,0 +1,32 @@
+.containerModalRegisterPayment{
+  background: var(--gray-400);
+  padding: 2rem;
+  border-radius: 8px;
+
+  .inputFormBase{
+    flex-direction: column;
+    gap:8px;
+
+    input {
+      margin-bottom: 8px;
+      padding: 0 1rem;
+    }
+
+  }
+
+  .footerBtnModal{
+    display: flex;
+    gap: 8px;
+    justify-content: end;
+    margin-top: 5px;
+
+    button {
+      padding: 0.8rem;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+  }
+}
+
+
+

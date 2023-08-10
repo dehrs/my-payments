@@ -1,0 +1,53 @@
+<div class="containerModalRegisterPayment">
+  <form #formPayment="ngForm">
+    <div class="inputFormBase">
+      <label for="user">Usuário</label>
+      <input
+        id="user"
+        [(ngModel)]="registerPayment.username"
+        name="username"
+        #username="ngModel"
+        placeholder="Nome"
+        required />
+    </div>
+    <div class="inputFormBase">
+      <label for="title">Titulo</label>
+      <input
+        id="title"
+        [(ngModel)]="registerPayment.title"
+        name="title"
+        #title="ngModel"
+        placeholder="Titulo"
+        required />
+    </div>
+    <div class="inputFormBase">
+      <label for="date">Data</label>
+      <input
+        id="date"
+        type="date"
+        name="date"
+        [(ngModel)]="registerPayment.date"
+        #date="ngModel"
+        required />
+    </div>
+    <div class="inputFormBase">
+      <label for="valuePayment">Valor</label>
+      <input
+        id="valuePayment"
+        type="number"
+        name="valuePayment"
+        [(ngModel)]="registerPayment.valuePayment"
+        #valuePayment="ngModel"
+        required />
+    </div>
+    <div class="footerBtnModal">
+      <button
+        (click)="onClose()"
+        type="button"
+        [disabled]="!formPayment.form.valid">
+        Salvar
+      </button>
+      <button (click)="onCancel()" type="button">Cancelar</button>
+    </div>
+  </form>
+</div>

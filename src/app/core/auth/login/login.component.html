@@ -1,28 +1,48 @@
-
 <main class="contentLogin">
   <div class="containerBoxForm">
-      <h1>Login</h1>
-      <form #formLogin="ngForm">
-        <div class="inputFormBase">
-          <label for="user">Usuário:</label>
-          <input type="text" id="user" name="user" [(ngModel)]="login.login"  #user="ngModel" required>
-          <div *ngIf="user.errors && (user.dirty || user.touched)" class="messagesErrors">
-            <small [hidden]="!user?.errors?.['required']">Digite o usuário</small>
-          </div>
+    <h1>Login</h1>
+    <form #formLogin="ngForm">
+      <div class="inputFormBase">
+        <label for="user">Usuário</label>
+        <input
+          type="text"
+          id="user"
+          name="user"
+          [(ngModel)]="login.login"
+          #user="ngModel"
+          required />
+        <div
+          *ngIf="user.errors && (user.dirty || user.touched)"
+          class="messagesErrors">
+          <small [hidden]="!user?.errors?.['required']">Digite o usuário</small>
         </div>
-        <div class="inputFormBase">
-          <label for="password">Senha:</label>
-          <input type="text" id="password" name="password"
-          [(ngModel)]="login.password" #password="ngModel" required>
-          <div *ngIf="password.errors && (password.dirty || password.touched)" class="messagesErrors">
-            <small [hidden]="!password?.errors?.['required']">Digite a senha</small>
-          </div>
+      </div>
+      <div class="inputFormBase">
+        <label for="password">Senha</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="login.password"
+          #password="ngModel"
+          required />
+        <div
+          *ngIf="password.errors && (password.dirty || password.touched)"
+          class="messagesErrors">
+          <small [hidden]="!password?.errors?.['required']"
+            >Digite a senha</small
+          >
         </div>
-        <small *ngIf="message" class="messagesErrors"> {{message}}</small>
-        <div class="footerFormButton">
-          <button type="button" (click)="logar()" [disabled]="!formLogin.form.valid">Entrar</button>
-        </div>
-      </form>
-    </div>
+      </div>
+      <small *ngIf="message" class="messagesErrors"> {{ message }}</small>
+      <div class="footerFormButton">
+        <button
+          type="button"
+          (click)="logar()"
+          [disabled]="!formLogin.form.valid || login.login !== login.password">
+          Entrar
+        </button>
+      </div>
+    </form>
+  </div>
 </main>
-
