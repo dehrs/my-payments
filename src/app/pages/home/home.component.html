@@ -1,7 +1,7 @@
 <main>
   <header class="header">
     <div class="content-header">
-      <span>My payments </span>
+      <span>Meus Pagamentos </span>
       <span>
         {{ name }}
       </span>
@@ -61,20 +61,12 @@
               <td>{{ payment.date | date: 'dd/MM/yyyy' }}</td>
               <td>{{ payment.valuePayment | currency: 'BRL' }}</td>
               <td>
-                <div
-                  style="
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    gap: 5px;
-                  ">
-                  <label for="paid">Pago</label>
-                  <input
-                    type="checkbox"
-                    name="paid"
-                    id="paid"
-                    [checked]="payment.isPaid" />
-                </div>
+                <mat-checkbox
+                  [checked]="payment.isPaid"
+                  (change)="onChangePaid(payment, $event.checked)"
+                  class="example-margin"
+                  >Pago</mat-checkbox
+                >
               </td>
               <td>
                 <div class="btnsActions">

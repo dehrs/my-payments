@@ -6,6 +6,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { DialogModule } from '@angular/cdk/dialog';
 import { CdkMenuModule } from '@angular/cdk/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [],
@@ -17,6 +19,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     DialogModule,
     CdkMenuModule,
     MatPaginatorModule,
+    MatCheckboxModule,
+    MatSnackBarModule,
   ],
 })
 export class AppMaterialModule {}
