@@ -2,7 +2,8 @@
 export interface NewPayment {
   id:string;
   username: string;
-  title: string;
-  date?: Date;
-  valuePayment?: number;
+  title: number | undefined;
+  date: Date | undefined;
+  valuePayment: number | undefined;
+  isPaid?: boolean
 }

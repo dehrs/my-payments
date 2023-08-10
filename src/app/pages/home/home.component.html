@@ -10,7 +10,11 @@
 
   <section class="sectionHome">
     <article class="inputFormBase">
-      <input type="text" placeholder="Pesquise por um nome" />
+      <input
+        type="text"
+        placeholder="Pesquise por um nome"
+        [(ngModel)]="searchFilter"
+        (keyup)="applyFilter(searchFilter)" />
     </article>
 
     <article class="containerHome">
@@ -48,15 +52,30 @@
           Não há pagamentos cadastrados
         </div>
         <table class="contentTable">
-          <tbody *ngFor="let item of payments">
+          <tbody *ngFor="let payment of pageSlice">
             <tr>
-              <td width="50%">{{ item.username }}</td>
+              <td width="50%">{{ payment.username }}</td>
               <td>
-                <span>{{ item.title }}</span>
+                <span>{{ payment.title }}</span>
               </td>
-              <td>{{ item.date | date: 'dd/MM/yyyy' }}</td>
-              <td>{{ item.valuePayment | currency: 'BRL' }}</td>
-              <td>pago?</td>
+              <td>{{ payment.date | date: 'dd/MM/yyyy' }}</td>
+              <td>{{ payment.valuePayment | currency: 'BRL' }}</td>
+              <td>
+                <div
+                  style="
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 5px;
+                  ">
+                  <label for="paid">Pago</label>
+                  <input
+                    type="checkbox"
+                    name="paid"
+                    id="paid"
+                    [checked]="payment.isPaid" />
+                </div>
+              </td>
               <td>
                 <div class="btnsActions">
                   <button
@@ -64,7 +83,7 @@
                     matTooltip="editar"
                     aria-label="Example mini fab with a heart icon"
                     class="btnIcon"
-                    (click)="openEditRegisterPayment(item)">
+                    (click)="openEditRegisterPayment(payment)">
                     <mat-icon>edit</mat-icon>
                   </button>
                   <button
@@ -72,7 +91,7 @@
                     matTooltip="Adicionar pagamento"
                     aria-label="Example mini fab with a heart icon"
                     class="btnIcon"
-                    (click)="onDelete(item)">
+                    (click)="onDelete(payment)">
                     <mat-icon>delete</mat-icon>
                   </button>
                 </div>
@@ -80,6 +99,15 @@
             </tr>
           </tbody>
         </table>
+
+        <mat-paginator
+          [length]="payments.length"
+          [disabled]="!payments.length"
+          [hidePageSize]="true"
+          [pageSize]="pageSize"
+          (page)="handlePageEvent($event)"
+          aria-label="Select page">
+        </mat-paginator>
       </div>
     </article>
   </section>

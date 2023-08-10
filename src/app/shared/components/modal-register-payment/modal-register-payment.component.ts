@@ -5,16 +5,16 @@ import { NgForm } from '@angular/forms';
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
-  selector: 'app-modal-add',
-  templateUrl: './modal-add.component.html',
-  styleUrls: ['./modal-add.component.scss'],
+  selector: 'app-modal-register-payment',
+  templateUrl: './modal-register-payment.component.html',
+  styleUrls: ['./modal-register-payment.component.scss'],
 })
-export class ModalAddComponent implements OnInit {
+export class ModalRegisterPaymentComponent implements OnInit {
   @ViewChild('formPayment') formPayment!: NgForm;
   registerPayment: NewPayment = {
     id: '',
     username: '',
-    title: '',
+    title: undefined,
     date: undefined,
     valuePayment: undefined,
   };

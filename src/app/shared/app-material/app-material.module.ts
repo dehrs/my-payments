@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DialogModule } from '@angular/cdk/dialog';
 import { CdkMenuModule } from '@angular/cdk/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [],
@@ -15,6 +16,7 @@ import { CdkMenuModule } from '@angular/cdk/menu';
     MatTooltipModule,
     DialogModule,
     CdkMenuModule,
+    MatPaginatorModule,
   ],
 })
 export class AppMaterialModule {}

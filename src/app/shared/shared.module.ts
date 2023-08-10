@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AppMaterialModule } from './app-material/app-material.module';
-import { ModalAddComponent } from './components/modal-add/modal-add.component';
+import { ModalRegisterPaymentComponent } from './components/modal-register-payment/modal-register-payment.component';
 
 @NgModule({
-  declarations: [ModalAddComponent],
+  declarations: [ModalRegisterPaymentComponent],
   imports: [CommonModule, FormsModule, RouterModule, AppMaterialModule],
 })
 export class SharedModule {}
