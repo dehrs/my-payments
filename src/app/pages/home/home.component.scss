@@ -44,19 +44,36 @@
   border-radius: 8px;
   width: 100%;
   margin-top: 2rem;
+  padding-top: 1rem;
 }
 
-.button{
+.btnsActions{
     display: flex;
     justify-content: end;
     gap: 8px;
-    margin-top: 1rem;
 
-    button {
+    .btnIcon {
       color: var(--gray-100);
       background-color: var(--blue-dark);
     }
+}
 
+.menuFilter {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  padding: 0.2rem;
+  background: var(--gray-400);
+  border-radius: 8px;
+
+  .filterItem {
+    padding: 0.5rem;
+    background: transparent;
+
+    &:last-child{
+      border-top: 1px solid rgb(128 128 128 / 42%);
+    }
+  }
 }
 
 .contentTable {
@@ -69,11 +86,6 @@
     padding: 1.25rem 2rem;
     background: var(--gray-500);
     color: var(--gray-200);
-
-    button {
-      color: var(--gray-100);
-      background-color: var(--blue-dark);
-    }
 
     &:first-child {
       border-top-left-radius: 6px;

@@ -14,18 +14,29 @@
     </article>
 
     <article class="containerHome">
-      <div class="button">
-        <button
-          mat-mini-fab
-          matTooltip="Filtro"
-          aria-label="Example mini fab with a heart icon">
-          <mat-icon>filter_alt</mat-icon>
-        </button>
+      <div class="btnsActions">
+        <div>
+          <button
+            mat-mini-fab
+            matTooltip="Filtro"
+            aria-label="Example mini fab with a heart icon"
+            [cdkMenuTriggerFor]="menu"
+            class="btnIcon">
+            <mat-icon>filter_alt</mat-icon>
+          </button>
+          <ng-template #menu>
+            <div class="menuFilter" cdkMenu>
+              <button class="filterItem" cdkMenuItem>Mais recentes</button>
+              <button class="filterItem" cdkMenuItem>Mais antigos</button>
+            </div>
+          </ng-template>
+        </div>
         <button
           mat-mini-fab
           matTooltip="Adicionar pagamento"
           aria-label="Example mini fab with a heart icon"
-          (click)="openAddRegisterPayment()">
+          (click)="openAddRegisterPayment()"
+          class="btnIcon">
           <mat-icon>add</mat-icon>
         </button>
       </div>
@@ -46,20 +57,24 @@
               <td>{{ item.date | date: 'dd/MM/yyyy' }}</td>
               <td>{{ item.valuePayment | currency: 'BRL' }}</td>
               <td>pago?</td>
-              <td style="display: flex; gap: 5px">
-                <button
-                  mat-mini-fab
-                  matTooltip="editar"
-                  aria-label="Example mini fab with a heart icon"
-                  (click)="openEditRegisterPayment(item)">
-                  <mat-icon>edit</mat-icon>
-                </button>
-                <button
-                  mat-mini-fab
-                  matTooltip="Adicionar pagamento"
-                  aria-label="Example mini fab with a heart icon">
-                  <mat-icon>delete</mat-icon>
-                </button>
+              <td>
+                <div class="btnsActions">
+                  <button
+                    mat-mini-fab
+                    matTooltip="editar"
+                    aria-label="Example mini fab with a heart icon"
+                    class="btnIcon"
+                    (click)="openEditRegisterPayment(item)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button
+                    mat-mini-fab
+                    matTooltip="Adicionar pagamento"
+                    aria-label="Example mini fab with a heart icon"
+                    class="btnIcon">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
               </td>
             </tr>
           </tbody>
