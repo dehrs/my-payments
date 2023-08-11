@@ -1,10 +1,10 @@
 import { PaymentService } from './../../core/services/payments.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { LoginService } from 'src/app/core/services/login.service';
 import { Dialog } from '@angular/cdk/dialog';
 import { NewPayment } from 'src/app/core/models/new-payment';
 import { ModalRegisterPaymentComponent } from 'src/app/shared/components/modal-register-payment/modal-register-payment.component';
-import { PageEvent } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -16,10 +16,12 @@ export class HomeComponent implements OnInit {
   name!: string;
   isChecked = true;
   payments: NewPayment[] = [];
-  pageSlice: NewPayment[] = [];
+  paymentsFiltered: NewPayment[] = [];
   searchFilter = '';
   pageSize = 3;
+  pageLength = 0;
   durationInSeconds = 5;
+  paymentsCurrent: NewPayment[] = [];
 
   constructor(
     private loginService: LoginService,
@@ -30,11 +32,19 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.loginService.loggedUser.login) {
+      //const pages = 3;
+      //this.pageSize = pages;
       this.name = this.loginService.loggedUser.login;
       this.paymentService.getPayments().subscribe(data => {
-        (this.payments = data), (this.pageSlice = data.slice(0, 3));
+        (this.payments = data), (this.paymentsFiltered = data.slice(0, 3));
+        this.pageLength = this.payments.length;
+        this.onPaymentCurrent(this.paymentsFiltered);
       });
     }
+  }
+
+  onPaymentCurrent(payments: NewPayment[]) {
+    this.paymentsCurrent = payments;
   }
 
   openAddRegisterPayment(): void {
@@ -49,7 +59,7 @@ export class HomeComponent implements OnInit {
     dialogRef.closed.subscribe(result => {
       if (result) {
         this.payments.push(result);
-        this.pageSlice = this.payments.slice(0, 3);
+        this.paymentsFiltered = this.payments.slice(0, 3);
       }
     });
   }
@@ -73,8 +83,8 @@ export class HomeComponent implements OnInit {
       if (result) {
         const idx = this.onFindPayment(paymentData);
         if (idx !== -1) {
-          this.payments[idx] = payment;
-          this.pageSlice = this.payments.slice(0, 3);
+          this.payments[idx] = result;
+          this.paymentsFiltered = this.payments.slice(0, 3);
           this.openSnackBar('Atualizado com sucesso');
         }
       }
@@ -84,8 +94,17 @@ export class HomeComponent implements OnInit {
   onDelete(payment: NewPayment): void {
     const paymentAux = [...this.payments];
     this.payments = paymentAux.filter(pay => pay.id !== payment.id);
-    this.pageSlice = this.payments.slice(0, 3);
-    this.openSnackBar('Excluído com sucesso');
+    if (this.searchFilter !== '') {
+      this.paymentsFiltered = this.paymentsCurrent.filter(
+        teste => teste.id !== payment.id
+      );
+      this.openSnackBar('Excluído com sucesso');
+      this.pageLength = this.paymentsFiltered.length;
+      this.pageSize = this.paymentsFiltered.length;
+    } else {
+      this.paymentsFiltered = this.payments.slice(0, 3);
+      this.openSnackBar('Excluído com sucesso');
+    }
   }
 
   handlePageEvent(event: PageEvent) {
@@ -95,26 +114,30 @@ export class HomeComponent implements OnInit {
     if (endIndex > this.payments.length) {
       endIndex = this.payments.length;
     }
-    this.pageSlice = this.payments.slice(startIndex, endIndex);
+    this.paymentsFiltered = this.payments.slice(startIndex, endIndex);
   }
 
   applyFilter(text: string) {
-    console.log(text);
-    this.pageSlice = this.payments
+    const filtered = this.payments.filter(it => {
+      return it.username.toLocaleLowerCase().includes(text.toLocaleLowerCase());
+    });
+    this.paymentsFiltered = this.payments
       .filter(it => {
         return it.username
           .toLocaleLowerCase()
           .includes(text.toLocaleLowerCase());
       })
       .slice(0, 3);
-    this.pageSize = this.pageSlice.length;
+    this.pageSize = this.paymentsFiltered.length;
+    this.pageLength = filtered.length;
+    this.onPaymentCurrent(this.paymentsFiltered);
   }
 
   onChangePaid(payment: NewPayment, paid: boolean) {
     const idx = this.onFindPayment(payment);
     if (idx !== -1) {
       this.payments[idx].isPaid = paid;
-      this.pageSlice = this.payments.slice(0, 3);
+      this.paymentsFiltered = this.payments.slice(0, 3);
       this.openSnackBar('Atualizado com sucesso');
     }
   }

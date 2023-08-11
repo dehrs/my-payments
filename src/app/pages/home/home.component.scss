@@ -2,7 +2,7 @@
   background: var(--gray-700);
   padding: 2.5rem 0px 7.5rem;
 
-  .content-header {
+  .contentHeader {
     max-width: 1120px;
     margin: 0px auto;
     padding: 0px 1.5rem;
@@ -76,11 +76,13 @@
   }
 }
 
+.tableResponsive {
+  overflow-x: auto;
+}
 .contentTable {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0 0.5rem;
-  margin-top: 1.5rem;
 
   td {
     padding: 1.25rem 2rem;

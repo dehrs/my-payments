@@ -1,6 +1,6 @@
 <main>
   <header class="header">
-    <div class="content-header">
+    <div class="contentHeader">
       <span>Meus Pagamentos </span>
       <span>
         {{ name }}
@@ -47,53 +47,55 @@
 
       <div style="margin-top: 30px">
         <div
-          *ngIf="!payments.length"
-          style="display: flex; justify-content: center">
+          *ngIf="!paymentsFiltered.length"
+          style="display: flex; justify-content: center; margin-bottom: 1rem">
           Não há pagamentos cadastrados
         </div>
-        <table class="contentTable">
-          <tbody *ngFor="let payment of pageSlice">
-            <tr>
-              <td width="50%">{{ payment.username }}</td>
-              <td>
-                <span>{{ payment.title }}</span>
-              </td>
-              <td>{{ payment.date | date: 'dd/MM/yyyy' }}</td>
-              <td>{{ payment.valuePayment | currency: 'BRL' }}</td>
-              <td>
-                <mat-checkbox
-                  [checked]="payment.isPaid"
-                  (change)="onChangePaid(payment, $event.checked)"
-                  class="example-margin"
-                  >Pago</mat-checkbox
-                >
-              </td>
-              <td>
-                <div class="btnsActions">
-                  <button
-                    mat-mini-fab
-                    matTooltip="editar"
-                    aria-label="Example mini fab with a heart icon"
-                    class="btnIcon"
-                    (click)="openEditRegisterPayment(payment)">
-                    <mat-icon>edit</mat-icon>
-                  </button>
-                  <button
-                    mat-mini-fab
-                    matTooltip="Adicionar pagamento"
-                    aria-label="Example mini fab with a heart icon"
-                    class="btnIcon"
-                    (click)="onDelete(payment)">
-                    <mat-icon>delete</mat-icon>
-                  </button>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="tableResponsive">
+          <table class="contentTable">
+            <tbody *ngFor="let payment of paymentsFiltered">
+              <tr>
+                <td width="50%">{{ payment.username }}</td>
+                <td>
+                  <span>{{ payment.title }}</span>
+                </td>
+                <td>{{ payment.date | date: 'dd/MM/yyyy' }}</td>
+                <td>{{ payment.valuePayment | currency: 'BRL' }}</td>
+                <td>
+                  <mat-checkbox
+                    [checked]="payment.isPaid"
+                    (change)="onChangePaid(payment, $event.checked)"
+                    class="example-margin"
+                    >Pago</mat-checkbox
+                  >
+                </td>
+                <td>
+                  <div class="btnsActions">
+                    <button
+                      mat-mini-fab
+                      matTooltip="editar"
+                      aria-label="Example mini fab with a heart icon"
+                      class="btnIcon"
+                      (click)="openEditRegisterPayment(payment)">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button
+                      mat-mini-fab
+                      matTooltip="Adicionar pagamento"
+                      aria-label="Example mini fab with a heart icon"
+                      class="btnIcon"
+                      (click)="onDelete(payment)">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <mat-paginator
-          [length]="payments.length"
+          [length]="pageLength"
           [disabled]="!payments.length"
           [hidePageSize]="true"
           [pageSize]="pageSize"
