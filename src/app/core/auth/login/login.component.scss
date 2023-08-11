@@ -7,15 +7,17 @@
   min-height: 100vh;
 
   .containerBoxForm{
-   background: var(--gray-400);
+    background: var(--gray-400);
     border-radius: 8px;
     padding: 2rem;
     display: flex;
     flex-direction: column;
     width: 20rem;
+
     @media (max-width: 768px) {
       width: 18rem;
     }
+
     h1 {
       text-align: center;
       margin-bottom: 1.5rem;
@@ -69,8 +71,6 @@
        }
     }
   }
-
-
 }
 
 .messagesErrors{
