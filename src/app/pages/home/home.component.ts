@@ -6,6 +6,7 @@ import { NewPayment } from 'src/app/core/models/new-payment';
 import { ModalRegisterPaymentComponent } from 'src/app/shared/components/modal-register-payment/modal-register-payment.component';
 import { PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -27,7 +28,8 @@ export class HomeComponent implements OnInit {
     private loginService: LoginService,
     private dialog: Dialog,
     private paymentService: PaymentService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -39,6 +41,11 @@ export class HomeComponent implements OnInit {
         this.onPaymentCurrent(this.paymentsFiltered);
       });
     }
+  }
+
+  logout() {
+    this.loginService.logout();
+    this.router.navigate(['/login']);
   }
 
   onPaymentCurrent(payments: NewPayment[]) {
@@ -56,7 +63,7 @@ export class HomeComponent implements OnInit {
 
     dialogRef.closed.subscribe(result => {
       if (result) {
-        this.payments.push(result);
+        this.payments.unshift(result);
         this.paymentsFiltered = this.payments.slice(0, 3);
       }
     });

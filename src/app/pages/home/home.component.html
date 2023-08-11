@@ -1,10 +1,20 @@
 <main>
   <header class="header">
-    <div class="contentHeader">
-      <span>Meus Pagamentos </span>
-      <span>
-        {{ name }}
-      </span>
+    <div class="containerHeader">
+      <div class="contentHeader">
+        <span>Meus Pagamentos</span>
+        <span>
+          {{ name }}
+        </span>
+      </div>
+      <div class="btn-logout">
+        <button
+          mat-icon-button
+          aria-label="icon button logout"
+          (click)="logout()">
+          <mat-icon>logout</mat-icon>
+        </button>
+      </div>
     </div>
   </header>
 

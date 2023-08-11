@@ -2,22 +2,33 @@
   background: var(--gray-700);
   padding: 2.5rem 0px 7.5rem;
 
-  .contentHeader {
+  .containerHeader {
     max-width: 1120px;
     margin: 0px auto;
     padding: 0px 1.5rem;
-    display: flex;
-    -webkit-box-pack: justify;
-    justify-content: space-between;
-    -webkit-box-align: center;
-    align-items: center;
 
-    span {
-      font-size: 1.5rem;
-      color:var(--gray-200);
+    .contentHeader {
+      display: flex;
+      -webkit-box-pack: justify;
+      justify-content: space-between;
+      -webkit-box-align: center;
+      align-items: center;
+
+      span {
+        font-size: 1.5rem;
+        color:var(--gray-200);
+      }
     }
+
+    .btn-logout {
+      display: flex;
+      justify-content: flex-end;
+      color:var(--gray-300);
+    }
+
   }
 }
+
 .sectionHome {
   width: 100%;
   max-width: 1120px;
