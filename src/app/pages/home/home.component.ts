@@ -1,10 +1,10 @@
 import { PaymentService } from './../../core/services/payments.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/core/services/login.service';
 import { Dialog } from '@angular/cdk/dialog';
 import { NewPayment } from 'src/app/core/models/new-payment';
 import { ModalRegisterPaymentComponent } from 'src/app/shared/components/modal-register-payment/modal-register-payment.component';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { PageEvent } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -32,8 +32,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.loginService.loggedUser.login) {
-      //const pages = 3;
-      //this.pageSize = pages;
       this.name = this.loginService.loggedUser.login;
       this.paymentService.getPayments().subscribe(data => {
         (this.payments = data), (this.paymentsFiltered = data.slice(0, 3));
