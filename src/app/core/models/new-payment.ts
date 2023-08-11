@@ -3,7 +3,7 @@ export interface NewPayment {
   id:string;
   username: string;
   title: number | undefined;
-  date: Date | undefined;
+  date: Date;
   valuePayment: number | undefined;
   isPaid?: boolean
 }

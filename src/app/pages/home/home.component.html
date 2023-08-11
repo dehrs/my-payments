@@ -30,8 +30,18 @@
           </button>
           <ng-template #menu>
             <div class="menuFilter" cdkMenu>
-              <button class="filterItem" cdkMenuItem>Mais recentes</button>
-              <button class="filterItem" cdkMenuItem>Mais antigos</button>
+              <button
+                class="filterItem"
+                cdkMenuItem
+                (click)="filterMostRecent()">
+                Mais recentes
+              </button>
+              <button
+                class="filterItem"
+                cdkMenuItem
+                (click)="filterEarliestDate()">
+                Mais antigos
+              </button>
             </div>
           </ng-template>
         </div>

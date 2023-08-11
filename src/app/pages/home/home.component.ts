@@ -146,4 +146,18 @@ export class HomeComponent implements OnInit {
       duration: 3 * 1000,
     });
   }
+
+  filterEarliestDate() {
+    const date = this.payments.sort(
+      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+    );
+    this.paymentsFiltered = date.slice(0, 3);
+  }
+
+  filterMostRecent() {
+    const date = this.payments.sort(
+      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    );
+    this.paymentsFiltered = date.slice(0, 3);
+  }
 }

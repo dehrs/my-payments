@@ -15,7 +15,7 @@ export class ModalRegisterPaymentComponent implements OnInit {
     id: '',
     username: '',
     title: undefined,
-    date: undefined,
+    date: new Date(),
     valuePayment: undefined,
   };
 
