@@ -106,7 +106,6 @@ export class HomeComponent implements OnInit {
   }
 
   handlePageEvent(event: PageEvent) {
-    console.log(event);
     const startIndex = event.pageIndex * event.pageSize;
     let endIndex = startIndex + event.pageSize;
     if (endIndex > this.payments.length) {

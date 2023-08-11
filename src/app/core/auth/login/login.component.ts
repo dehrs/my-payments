@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   @ViewChild('formLogin') formLogin!: NgForm;
   login: Login = {};
   message = '';
+  typePassword = 'password';
 
   constructor(
     private loginService: LoginService,
@@ -40,6 +41,14 @@ export class LoginComponent implements OnInit {
           this.message = 'Usuario/Senha inválidos!';
         }
       });
+    }
+  }
+
+  onShowPassword() {
+    if (this.typePassword === 'password') {
+      this.typePassword = 'text';
+    } else {
+      this.typePassword = 'password';
     }
   }
 }

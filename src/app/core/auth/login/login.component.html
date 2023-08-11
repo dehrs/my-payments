@@ -19,13 +19,28 @@
       </div>
       <div class="inputFormBase">
         <label for="password">Senha</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          [(ngModel)]="login.password"
-          #password="ngModel"
-          required />
+        <div class="inputPassword">
+          <input
+            [type]="typePassword"
+            id="password"
+            name="password"
+            [(ngModel)]="login.password"
+            #password="ngModel"
+            required />
+          <button (click)="onShowPassword()">
+            <mat-icon
+              aria-hidden="false"
+              aria-label="icon visibility"
+              fontIcon="visibility"
+              *ngIf="typePassword === 'password'"></mat-icon>
+            <mat-icon
+              aria-hidden="false"
+              aria-label="icon visibility off"
+              fontIcon="visibility_off"
+              *ngIf="typePassword === 'text'"></mat-icon>
+          </button>
+        </div>
+
         <div
           *ngIf="password.errors && (password.dirty || password.touched)"
           class="messagesErrors">

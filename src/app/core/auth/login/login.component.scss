@@ -14,7 +14,7 @@
     flex-direction: column;
     width: 20rem;
     @media (max-width: 768px) {
-      width: 16rem;
+      width: 18rem;
     }
     h1 {
       text-align: center;
@@ -50,6 +50,27 @@
     font-weight: bold;
     transition: 0.2s;
   }
+}
+
+.inputPassword{
+  position: relative;
+
+  button {
+    background: transparent;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+
+    .mat-icon{
+      font-size: 1.3rem;
+
+      @media (max-width: 768px) {
+          font-size: 1rem;
+       }
+    }
+  }
+
+
 }
 
 .messagesErrors{
