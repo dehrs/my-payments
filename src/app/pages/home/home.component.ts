@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (this.loginService.loggedUser.login) {
+    if (this.loginService.loggedUser?.login) {
       this.name = this.loginService.loggedUser.login;
       this.paymentService.getPayments().subscribe(data => {
         (this.payments = data), (this.paymentsFiltered = data.slice(0, 3));
@@ -101,7 +101,7 @@ export class HomeComponent implements OnInit {
     this.payments = paymentAux.filter(pay => pay.id !== payment.id);
     if (this.searchFilter !== '') {
       this.paymentsFiltered = this.paymentsCurrent.filter(
-        teste => teste.id !== payment.id
+        pay => pay.id !== payment.id
       );
       this.openSnackBar('Excluído com sucesso');
       this.pageLength = this.paymentsFiltered.length;

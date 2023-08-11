@@ -43,12 +43,13 @@
     </div>
     <div class="footerBtnModal">
       <button
+        id="onClose"
         (click)="onClose()"
         type="button"
         [disabled]="!formPayment.form.valid">
         Salvar
       </button>
-      <button (click)="onCancel()" type="button">Cancelar</button>
+      <button id="onCancel" (click)="onCancel()" type="button">Cancelar</button>
     </div>
   </form>
 </div>

@@ -19,13 +19,13 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     private router: Router,
     private route: ActivatedRoute
-  ) {
-    if (this.loginService.loggedUser) {
-      this.router.navigate(['/home']);
-    }
-  }
+  ) {}
 
   ngOnInit(): void {
+    if (this.loginService?.loggedUser) {
+      this.router.navigate(['/home']);
+    }
+
     this.route.queryParams.subscribe(params => {
       this.message = params['error'];
     });
