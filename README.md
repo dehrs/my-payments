@@ -3,6 +3,8 @@
 Este projeto é um crud de registros de pagamentos. Para acessar esse projeto você precisa logar na aplicação.
 Foi feito com dados mocados então para facilitar a autenticação o login e a senha devem ser iguais.
 
+![](projeto.gif)
+
 ## Tecnologias
  *  Angular 16
  *  Material UI
